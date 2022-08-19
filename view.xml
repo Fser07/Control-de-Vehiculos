@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <data>
+                <record id="view_vehicle_tree" model="ir.ui.view">
+                        <field name="name">vehicle.vehicle.tree</field>     
+                        <field name="model">vehicle.vehicle</field>     
+                        <field name="priority" eval="8"/>          
+                        <field name="arch" type="xml"/>
+                        <tree string="Vehicle">
+                                <field name="matricula"/>
+                                <field name="tipo"/>
+                                <field name="km"/>
+                                <field name="fecha_matricula"/>
+                        </tree>        
+                </record>
+                <record id="view_vehicle_form" model="ir.ui.view">
+                        <field name="name">vehicle.vehicle.tree</field>     
+                        <field name="model">vehicle.vehicle</field>     
+                        <field name="priority" eval="8"/>          
+                        <field name="arch" type="xml"/>
+                        <form string = "Vehicle">
+                        	<sheet>
+                        		<field name="photo" widget="image" class="oe_left oe_avatar"/>
+					<div class="oe_title">
+						<h1>
+							<table>
+								<tr>
+									<td style="padding-right:10px">
+										<field name="Matricula" required="1" placeholder="Matricula"/>
+									</td>
+								</tr>
+							</table>
+						</h1>
+					</div>
+					<notebook colspan="4">
+						<page name="vehicle_information" string="Informacion del vehiculo"> 
+							<group col="4" colspan="4" name="vehicle_detail">
+								<field name="tipo"/>
+								<field name="Km"/>
+								<field name="fecha_matriculacion"/> 
+							</group>
+						</page>
+					</notebook>	                        		
+                        	</sheet>
+                        </form>
+                </record>
+                <record  model="ir.actions.act.windows" id="action_view_vehicle">
+                        <field name="name">Vehiculos</field>     
+                        <field name="res_model">vehicle.vehicle</field>     
+                        <field name="view_type">form</field>          
+                        <field name="view_model">tree,form</field>
+                        <field name="domain">[]<field/>
+                        <field name="help" type="html"><p class="oe_view_nocontent_create">AgregarVehiculo</p></field>
+        
+                </record>
+                <menuitem id="menu_vehicle" name="vehiculos"/>
+                <menuitem id="flota" name="flota" parent="menu_vehicle" actions="actions_view_vehicle"/>
+        </data>
+</odoo>  
